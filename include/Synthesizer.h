@@ -1,13 +1,12 @@
 // Synthesizer header, takes midi input, coordinates voices
 // and returns samples for output
 
-// #include "Voice.h"
+#include "Voice.h"
 #include "IMidiListener.h"
-#include <cstdint>
 
 class Synthesizer : public IMidiListener {
     private:
-        // Voice voice;
+        Voice voice;
 
     public:
         void noteOn(uint8_t note, uint8_t vel);
