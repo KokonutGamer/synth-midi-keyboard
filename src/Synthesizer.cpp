@@ -1,11 +1,11 @@
 #include "Synthesizer.h"
 
-void Synthesizer::noteOn(uint8_t note, uint8_t vel) {
-    voice.noteOn(note, vel);
+void Synthesizer::noteOn(uint8_t note) {
+    voice.noteOn(note);
 }
 
-void Synthesizer::noteOff(uint8_t note, uint8_t vel) {
-    voice.noteOff(note, vel);
+void Synthesizer::noteOff(uint8_t note) {
+    voice.noteOff(note);
 }
 
 void Synthesizer::cc(uint8_t module, uint8_t val) {

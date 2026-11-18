@@ -4,12 +4,12 @@
 // TODO: #include EG
 #include "Voice.h"
 
-void Voice::noteOn(uint8_t note, uint8_t vel) {
-    // TODO: Pass note and velocity to modules
+void Voice::noteOn(uint8_t note) {
+    // TODO: Pass note to modules
 };
 
-void Voice::noteOff(uint8_t note, uint8_t vel) {
-    // TODO: Pass note and velocity to modules
+void Voice::noteOff(uint8_t note) {
+    // TODO: Pass note to modules
 };
 
 void Voice::cc(uint8_t module, uint8_t val) {
