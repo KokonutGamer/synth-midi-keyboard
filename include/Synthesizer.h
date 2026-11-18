@@ -1,10 +1,8 @@
-// Synthesizer header, takes midi input, coordinates voices
-// and returns samples for output
+// Coordinates voices and returns samples for output.
 
 #include "Voice.h"
-#include "IMidiListener.h"
 
-class Synthesizer : public IMidiListener {
+class Synthesizer {
     private:
         Voice voice;
 

@@ -19,4 +19,5 @@ void Voice::cc(uint8_t module, uint8_t val) {
 uint16_t Voice::renderSample() {
     // TODO: Prompt all modules for value
     // TODO: Add and return value
+    return 0;
 }
