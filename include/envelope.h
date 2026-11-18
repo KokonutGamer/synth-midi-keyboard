@@ -1,3 +1,18 @@
+/*
+ * AI Assistance Disclosure
+ *
+ * AI Tool: OpenAI ChatGPT (GPT-6)
+ *
+ * This code was generated with assistance from ChatGPT.
+ * I reviewed the implementation and studied its logic, including
+ * the functions, variables, calculations, and control flow.
+ * I understand how the code works and can explain its functionality.
+ *
+ * Verification: I reviewed the code line by line and checked
+ * its logic against the intended module behavior.
+ *
+ * Author: Matiyas Dawit
+ */
 #ifndef ENVELOPE_H
 #define ENVELOPE_H
 
