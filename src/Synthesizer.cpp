@@ -24,6 +24,8 @@ void Synthesizer::initSampleTimer() {
     NVIC_EnableIRQ(TC0_IRQn); // enable interrupt in interrupt controller
 }
 
+
+// TODO: Module management
 void Synthesizer::noteOn(uint8_t note) {
 }
 
@@ -34,4 +36,5 @@ void Synthesizer::cc(uint8_t module, uint8_t val) {
 }
 
 uint16_t Synthesizer::renderSample() { // prompts modules and returns sample to be written to DAC
+    // TODO: Request module data and calculate sample
 }
