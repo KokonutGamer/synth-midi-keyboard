@@ -12,3 +12,10 @@ void setup() {
 void loop() {
 	// TODO
 }
+
+
+// ISR
+void TC0_Handler()
+{
+   TC_GetStatus(TC0, 0); // read interrupt register to clear status flag
+}

@@ -5,6 +5,7 @@ uint32_t Synthesizer::getSampleRate() {
     return sampleRate;
 }
 
+// Triggers ISR: void TC0_Handler() {}
 void Synthesizer::initSampleTimer() {
     pmc_set_writeprotect(false); // allow writing to PCM (clock) registers
     pmc_enable_periph_clk(ID_TC0); // enable peripheral clock 0
