@@ -4,7 +4,6 @@
 
 class Synthesizer {
     private:
-        Voice voice;
 
     public:
         void noteOn(uint8_t note);
