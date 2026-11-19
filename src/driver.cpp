@@ -5,23 +5,10 @@ void setup() {
 	Serial.begin(115200);
 	Serial.println("Hello, World!");
 
-	// Synth timer test
-	Synthesizer Synth;
-	Synth.initSampleTimer();
-	pinMode(13,OUTPUT);
+	Synthesizer Synth; // init synth object
+	Synth.initSampleTimer(); // start sample timer
 }
 
 void loop() {
 	// TODO
-}
-
-
-// ISR
-
-volatile boolean pinOn;
-
-void TC0_Handler()
-{
-   TC_GetStatus(TC0, 0);
-   digitalWrite(13, pinOn = !pinOn);
 }
