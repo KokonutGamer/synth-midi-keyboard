@@ -13,13 +13,14 @@ void DacOutput::init() {
     DACC->DACC_CHER = DACC_CHER_CH0; // enable DAC0 channel
 }
 
-// takes 12 bit sample
+// expects uint16_t [0, 4095]
+// converts 12 bit sample to voltage [1/6*5V, 5/6*5V]
 void DacOutput::write(uint16_t sample) {
     DACC->DACC_CDR = sample;
 }
 
 // expects float [-1, 1] // probably ((VCO+LFO)*ENV)/2
-// converts to 12 bit val centered on 2048 
+// converts to 12 bit val centered on 2047
 void DacOutput::writeFloat(float fSample) {
-    write(uint16_t((fSample + 1.0f) * 2048.0f));
+    write(uint16_t((fSample + 1.0f) * 2047.0f));
 }
