@@ -18,6 +18,15 @@
 
 class Envelope {
  private:
+	/**
+	 * Creates the different stages in the ADSR lifecycle
+	 *
+	 * @param Idle     No key is pressed
+	 * @param Attack   Increase in amplitude toward maximum
+	 * @param Decay    Decrease in ampltitude toward sustian level
+	 * @param Sustain  Hold the same Amplitutde
+	 * @param Release  Decrease the amplitude to 0
+	 */
 	enum class Stage { Idle, Attack, Decay, Sustain, Release };
 
 	Stage currentStage;
