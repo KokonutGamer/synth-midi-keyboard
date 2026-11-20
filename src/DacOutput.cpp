@@ -1,27 +1,18 @@
-#include <Arduino.h>
-#include "DacOut.h"
+#include "DacOutput.h"
+#include <include/pmc.h>
 
-class DacOut;
-
-void DacOut::initDac() {
-    pmc_enable_periph_clk(ID_DACC);
-    DACC->DACC_CR = DACC_CR_SWRST;
-    DACC->DACC_MR = DACC_MR_TRGEN_DIS        // free-run, write = convert
-                  | DACC_MR_WORD_HALF        // 16-bit write, low 12 used
-                  | DACC_MR_USER_SEL_CHANNEL0
-                  | DACC_MR_STARTUP_8
-                  | DACC_MR_REFRESH(1)
-                  | DACC_MR_MAXS;
-    DACC->DACC_CHER = DACC_CHER_CH0;         // enable channel 0 (DAC0 pin)
+void DacOutput::initDac() {
+    pmc_enable_periph_clk(ID_DACC); // enable clock for DAC
+    DACC->DACC_WPMR = DACC_WPMR_WPKEY(0x444143); // unlock DACC Mode Register for write
+    // configure DACC Mode Register
+    DACC->DACC_MR = DACC_MR_TRGEN_DIS // free running mode
+                    | DACC_MR_WORD_HALF // use half-word
+                    | DACC_MR_USER_SEL_CHANNEL0 // use DAC0
+                    | DACC_MR_MAXS_MAXIMUM // max speed mode
+                    | DACC_MR_STARTUP_8; // wait 8 cycles on startup
+    DACC->DACC_CHER = DACC_CHER_CH0; // enable DAC0 channel
 }
 
-void DacOut::write(float sample) {
-    if (sample > 1.0f)  sample = 1.0f;
-    if (sample < -1.0f) sample = -1.0f;
-
-    uint32_t code = (uint32_t)((sample * 0.5f + 0.5f) * kMaxCode);
-
-    if (DACC->DACC_ISR & DACC_ISR_TXRDY) {   // skip if busy, never block in ISR
-        DACC->DACC_CDR = code;
-    }
+void DacOutput::write(uint16_t sample) {
+    DACC->DACC_CDR = sample;
 }
