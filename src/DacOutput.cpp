@@ -1,6 +1,10 @@
 #include "DacOutput.h"
 #include <include/pmc.h>
 
+DacOutput::DacOutput() {
+    init();
+}
+
 void DacOutput::init() {
     pmc_enable_periph_clk(ID_DACC); // enable clock for DAC
     DACC->DACC_WPMR = DACC_WPMR_WPKEY(0x444143); // unlock DACC Mode Register for write
