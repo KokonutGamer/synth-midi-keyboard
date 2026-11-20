@@ -16,15 +16,21 @@
  */
 #include "envelope.h"
 
+static constexpr float DEFAULT_ATK = 0.1f;
+static constexpr float DEFAULT_DCY = 0.2f;
+static constexpr float DEFAULT_SUS = 0.7f;
+static constexpr float DEFAULT_REL_TIME = 0.3f;
+static constexpr float DEFAULT_REL_STEP = 0.0f;
+
 Envelope::Envelope(float sampleRate)
     : currentStage(Stage::Idle),
       sampleRate(sampleRate),
       level(0.0f),
-      attackTime(0.1f),
-      decayTime(0.2f),
-      sustainLevel(0.7f),
-      releaseTime(0.3f),
-      releaseStep(0.0f) {}
+      attackTime(DEFAULT_ATK),
+      decayTime(DEFAULT_DCY),
+      sustainLevel(DEFAULT_SUS),
+      releaseTime(DEFAULT_REL_TIME),
+      releaseStep(DEFAULT_REL_STEP) {}
 
 /**
  * Sets the duration of each stage of the ADSR envelope.
