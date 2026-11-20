@@ -7,9 +7,7 @@ class DacOutput {
     public:
         void initDac();
         void write(uint16_t sample);
-
-    private:
-        static constexpr uint32_t kMaxCode = 4095;
+        void writeFloat(float fSample);
 };
 
 #endif
