@@ -21,10 +21,7 @@ class Synthesizer {
         /**
          * Constructor
          */
-        Synthesizer(uint32_t sampleRate) : m_SampleRate(sampleRate) {
-            // TODO: instantiate modules
-            initSampleTimer();
-        }
+        Synthesizer(uint32_t sampleRate);
 
         /**
          * Returns sample rate

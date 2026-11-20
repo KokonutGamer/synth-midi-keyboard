@@ -2,6 +2,11 @@
 #include <include/pmc.h>
 // TODO: #include "noteTable.h"
 
+Synthesizer::Synthesizer(uint32_t sampleRate) : m_SampleRate(sampleRate) {
+    // TODO: instantiate modules
+    initSampleTimer();
+}
+
 uint32_t Synthesizer::getSampleRate() {
     return m_SampleRate;
 }
