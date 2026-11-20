@@ -5,7 +5,7 @@
 
 class DacOutput {
     public:
-        void initDac();
+        void init();
         void write(uint16_t sample);
         void writeFloat(float fSample);
 };
