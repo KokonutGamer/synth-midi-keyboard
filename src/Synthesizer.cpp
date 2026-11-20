@@ -1,11 +1,12 @@
 #include "Synthesizer.h"
 #include <include/pmc.h>
+// TODO: #include "noteTable.h"
 
 uint32_t Synthesizer::getSampleRate() {
-    return sampleRate;
+    return m_SampleRate;
 }
 
-// Triggers ISR: void TC0_Handler() {}
+// Timer triggers ISR: void TC0_Handler() {}
 void Synthesizer::initSampleTimer() {
     pmc_set_writeprotect(false); // allow writing to PCM (clock) registers
     pmc_enable_periph_clk(ID_TC0); // enable peripheral clock 0
@@ -13,7 +14,7 @@ void Synthesizer::initSampleTimer() {
     // configure TC0, channel 0, waveform mode | count up and reset on RC | use clock 1 (Master clock/2)
     TC_Configure(TC0, 0, TC_CMR_WAVE | TC_CMR_WAVSEL_UP_RC | TC_CMR_TCCLKS_TIMER_CLOCK1);
 
-    uint32_t compareValue = 84000000/2/sampleRate; // MCK/divisor/SampleRate
+    uint32_t compareValue = 84000000/2/m_SampleRate; // MCK/divisor/SampleRate
     TC_SetRC(TC0, 0, compareValue);
 
     // attach interrupt to RC compare value
@@ -35,6 +36,6 @@ void Synthesizer::noteOff(uint8_t note) {
 void Synthesizer::cc(uint8_t module, uint8_t val) {
 }
 
-uint16_t Synthesizer::renderSample() { // prompts modules and returns sample to be written to DAC
-    // TODO: Request module data and calculate sample
+// TODO: Request module data and calculate sample
+uint16_t Synthesizer::renderSample() {
 }

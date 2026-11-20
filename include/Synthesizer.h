@@ -1,6 +1,5 @@
 // Coordinates modules and returns samples for output.
 
-// TODO: #include "noteTable.h"
 // TODO: #include VCO
 // TODO: #include LFO
 // TODO: #include EG
@@ -9,17 +8,53 @@
 
 class Synthesizer {
     private:
-        static constexpr uint32_t sampleRate = 44100;
-        // TODO: hold module instances
+        uint32_t m_SampleRate = 44100;
 
-    public:
-        uint32_t getSampleRate();
+        /**
+         * Start sampling
+         */
         void initSampleTimer();
 
+        // TODO: hold modules
+
+    public:
+        /**
+         * Constructor
+         */
+        Synthesizer(uint32_t sampleRate) : m_SampleRate(sampleRate) {
+            // TODO: instantiate modules
+            initSampleTimer();
+        }
+
+        /**
+         * Returns sample rate
+         */
+        uint32_t getSampleRate();
+
+        /**
+         * Play a note with the given frequency.
+         *
+         * @param note  The frequency of the note to play.
+         */
         void noteOn(uint8_t note);
+
+        /**
+         * Stop playing a note with the given frequency.
+         *
+         * @param note  The frequency of the note to play.
+         */
         void noteOff(uint8_t note);
+
+        /**
+         * Edit a module control value.
+         *
+         * @param module    The module to edit.
+         * @param val       The updated value.
+         */
         void cc(uint8_t module, uint8_t val); // control change
 
-        uint16_t renderSample(); // prompts modules and returns sample to be written to DAC
-
+        /**
+         * Prompt modules for values, combine values into sample, write sample to DAC.
+         */
+        uint16_t renderSample();
 };
