@@ -18,24 +18,39 @@
 
 class Oscillator {
  private:
-	// This is the amount of wave cyccles per second. eg 440Hz
+	/**
+	 * Amount of wave cycles per second eg 440Hz
+	 */
 	float frequency;
-	// this is the sample rate per second. eg 44100 Hz
+
+	/**
+	 * Amount of audio waveform samples generated per second
+	 */
 	float sampleRate;
 
-	// This is how we determine when one wave starts and
-	// another ends. It is a value between 0 and 1. 
-	// we incremented by this value starting from 0 to 1
-	// it is calculated by frequency/sampleRate
+	/**
+	 * Fracitional position within a wavecycle. It ranges from 0-1
+	 */
 	float phase;
 
  public:
+	/**
+	 * Constructs an oscillator with the specified sample rate
+	 *
+	 * @param sampleRate    Number of digital samples per second
+	 */
 	Oscillator(float sampleRate);
 
+	/**
+	 * Sets the frequency of the sine wave
+	 *
+	 * @param newFrequency    Amount of wave cycles per second
+	 */
 	void setFrequency(float newFrequency);
 
-    // calculates the precise next point on our wave
-    // after 1/samplerate seconds
+	/**
+	 * Calculates the precise amplitude of the wave at its current position
+	 */
 	float nextSample();
 };
 

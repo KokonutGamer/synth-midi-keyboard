@@ -17,42 +17,47 @@
 #define ENVELOPE_H
 
 class Envelope {
-private:
-    enum class Stage {
-        Idle,
-        Attack,
-        Decay,
-        Sustain,
-        Release
-    };
+ private:
+	enum class Stage { Idle, Attack, Decay, Sustain, Release };
 
-    Stage stage;
+	Stage currentStage;
 
-    float sampleRate;
-    float level;
+	float sampleRate;
+	float level;
 
-    float attackTime;
-    float decayTime;
-    float sustainLevel;
-    float releaseTime;
-    float releaseStep;
+	float attackTime;
+	float decayTime;
+	float sustainLevel;
+	float releaseTime;
+	float releaseStep;
 
-public:
-    Envelope(float sampleRate);
+ public:
+	Envelope(float sampleRate);
 
-    void setADSR(float attack,
-                 float decay,
-                 float sustain,
-                 float release);
+	/**
+	 * Sets the duration of each stage of the ADSR envelope.
+	 *
+	 * @param attack    The duration of the attack stage in milliseconds.
+	 * @param decay     The duration of the decay stage in milliseconds.
+	 * @param sustain   The duration of the sustain stage in milliseconds.
+	 * @param release   The duration of the release stage in milliseconds.
+	 */
+	void setADSR(float attack, float decay, float sustain, float release);
 
-   
-                 // triggers attack
-    void noteOn();
-    // triggers release
-    void noteOff();
+	/**
+	 * Triggers the attack stage
+	 */
+	void noteOn();
 
-    // tries to get the next point in our current stage
-    float nextSample();
+	/**
+	 * Triggers the release stage
+	 */
+	void noteOff();
+
+	/**
+	 * Calculates the next amplitude level based on its current stage
+	 */
+	float nextSample();
 };
 
 #endif
