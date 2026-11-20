@@ -5,6 +5,10 @@
 
 class DacOutput {
     public:
+        DacOutput() {
+            init();
+        }
+
         /**
          * Initializes DAC0 pin for analog writing
          */
