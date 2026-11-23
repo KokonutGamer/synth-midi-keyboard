@@ -1,10 +1,15 @@
 #include <Arduino.h>
 #include "Synthesizer.h"
+#include "DacOutput.h"
 
 /*
  * Globals
  */
-Synthesizer synth;
+static constexpr uint32_t SAMPLE_RATE = 44100;
+
+Synthesizer synth = Synthesizer(static_cast<uint32_t>(SAMPLE_RATE));
+static DacOutput dac;
+volatile bool doRender = false;
 
 /*
  * Arduino
@@ -12,19 +17,19 @@ Synthesizer synth;
 void setup() {
 	Serial.begin(115200);
 	Serial.println("Hello, World!");
-
-	Synthesizer synth = Synthesizer(static_cast<uint32_t>(44100)); // init synth object
 }
 
 void loop() {
-	// TODO
+	if (doRender) {
+		dac.writeFloat(synth.renderSample());
+		doRender = false;
+	}
 }
 
 /*
  * ISR
  */
-void TC0_Handler()
-{
+void TC0_Handler() {
    TC_GetStatus(TC0, 0); // read interrupt register to clear status flag
-   synth.renderSample();
+   doRender = true;
 }
