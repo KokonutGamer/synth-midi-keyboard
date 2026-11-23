@@ -3,7 +3,6 @@
 // TODO: #include "noteTable.h"
 
 Synthesizer::Synthesizer(uint32_t sampleRate) : m_SampleRate(sampleRate) {
-    // TODO: instantiate modules
     initSampleTimer();
 }
 
@@ -41,6 +40,7 @@ void Synthesizer::noteOff(uint8_t note) {
 void Synthesizer::cc(uint8_t module, uint8_t val) {
 }
 
-// TODO: Request module data and calculate sample
 uint16_t Synthesizer::renderSample() {
+    float sample = ((vco.nextSample()+lfo.nextSample())/2.0f)*env.nextSample();
+    return static_cast<uint16_t>(sample);
 }
