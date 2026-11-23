@@ -1,8 +1,8 @@
 // Coordinates modules and returns samples for output.
 
-// TODO: #include VCO
-// TODO: #include LFO
-// TODO: #include EG
+#include "oscillator.h"
+#include "lfo.h"
+#include "envelope.h"
 
 #include <cstdint>
 
@@ -10,12 +10,14 @@ class Synthesizer {
     private:
         uint32_t m_SampleRate = 44100;
 
+        Oscillator vco = Oscillator(m_SampleRate);
+        LFO lfo = LFO(m_SampleRate);
+        Envelope env = Envelope(m_SampleRate);
+
         /**
          * Start sampling
          */
         void initSampleTimer();
-
-        // TODO: hold modules
 
     public:
         /**
