@@ -8,8 +8,9 @@
 
 class Synthesizer {
     private:
-        uint32_t m_SampleRate = 44100;
+        uint32_t m_SampleRate;
 
+        // TODO: Could add default constructors and initialize these in constructor instead
         Oscillator vco = Oscillator(m_SampleRate);
         LFO lfo = LFO(m_SampleRate);
         Envelope env = Envelope(m_SampleRate);
@@ -55,5 +56,5 @@ class Synthesizer {
         /**
          * Prompt modules for values, combine values into sample, write sample to DAC.
          */
-        uint16_t renderSample();
+        float renderSample();
 };

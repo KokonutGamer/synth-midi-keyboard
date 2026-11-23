@@ -40,7 +40,6 @@ void Synthesizer::noteOff(uint8_t note) {
 void Synthesizer::cc(uint8_t module, uint8_t val) {
 }
 
-uint16_t Synthesizer::renderSample() {
-    float sample = ((vco.nextSample()+lfo.nextSample())/2.0f)*env.nextSample();
-    return static_cast<uint16_t>(sample);
+float Synthesizer::renderSample() {
+    return ((vco.nextSample()+lfo.nextSample())/2.0f)*env.nextSample();
 }
