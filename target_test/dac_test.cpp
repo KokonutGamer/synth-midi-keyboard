@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "DacOutput.h"
+#include "dac_output.h"
 
 static DacOutput dac;
 
